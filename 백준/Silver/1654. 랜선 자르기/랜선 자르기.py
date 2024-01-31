@@ -5,7 +5,6 @@ for _ in range(K):
 
 start = 1
 end = max(height)
-output= 0
 while start <= end : 
     total =0
     mid = (start+end)//2
