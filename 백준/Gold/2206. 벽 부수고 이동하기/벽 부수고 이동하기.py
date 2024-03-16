@@ -15,18 +15,17 @@ dx = [-1,1,0,0]
 dy = [0,0,-1,1]
 INF = int(1e9)
 
-def bfs(x,y):
+def bfs():
     global ans
     visit = set()
-    q = deque()
-    q.append([x,y,1,0])
-    visit.add((0,0,0))
+    q = deque([(0,0,1,0)]) # x,y, 현재 횟수, 벽 부쉈는지 0/1(dt)
+    visit.add((0,0,0)) # x,y,벽 부쉈는지 0/1
     if n==1 and m==1 :
         ans =1
-        
+
     while q:
         x, y, cnt, dt = q.popleft()
-        
+
         for i in range(4):
             nx = x + dx[i]
             ny = y + dy[i]
@@ -38,12 +37,14 @@ def bfs(x,y):
                     if graph[nx][ny]==0:
                         q.append((nx,ny,cnt+1, dt))
                         visit.add((nx,ny, dt))
+
                     elif graph[nx][ny] ==1 and dt == 0:
                         q.append((nx,ny,cnt+1,1))
                         visit.add((nx,ny,1))
 
 ans = INF
-bfs(0,0)
+bfs()
+
 if ans == INF:
     print(-1)
 else : print(ans)
